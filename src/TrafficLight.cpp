@@ -27,6 +27,7 @@ void MessageQueue<T>::send(T &&msg)
     // as well as _condition.notify_one() to add a new message to the queue and afterwards send a notification.
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     std::lock_guard<std::mutex> lock(_mtx); // perform message write to MessageQueue under the lock
+    _queue.clear(); // old message are redundant, so clear queue before add new message
     _queue.emplace_back(std::move(msg)); // add message to MessageQueue
     _cvari.notify_one(); // notify after write to queue
 }
