@@ -76,7 +76,7 @@ void TrafficLight::cycleThroughPhases()
 
     std::random_device rd;
     std::mt19937 eng(rd());
-    std::uniform_int_distribution<> range(12, 15);
+    std::uniform_int_distribution<> range(4, 6);
 
     double cycleDuration = range(eng); // duration of a single simulation cycle in ms
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
